@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Input Example</title>
+    <style>
+        .container {
+            width: 50%;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul>
+            <li>Milk</li>
+            <li>Soda</li>
+            <li>Suagar</li>
+        </ul>
+        <button>add</button>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('li');
+        const button = document.querySelector('button');
+        const ul = document.querySelector('ul');
+
+        ul.addEventListener('click', (e) => {
+            e.target.remove();
+        })
+
+
+        button.addEventListener('click', () => {
+            const li = document.createElement('li');
+            const promt = prompt('Enter new item:');
+            li.textContent = promt
+            ul.append(li)
+        });
+    </script>
+
+</body>
+
+</html>
