@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+
+    h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: 500;
+      width: 280px;
+      text-align: center;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 0.7rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: background 0.2s ease;
+    }
+
+    h3:hover {
+      background: #e0f2fe;
+    }
+  </style>
+  <h1>Prees any keys</h1>
+  <h3></h3>
+  <h3></h3>
+  <h3></h3>
+
+  <script>
+    const fields = document.querySelectorAll('h3')
+
+    document.addEventListener('keydown', (e) => {
+      fields[0].textContent = "Key: " + e.key
+      fields[1].textContent = "Code: " + e.code
+      fields[2].textContent = "KeyCode: " + e.keyCode
+    })
+  </script>
+</body>
+
+</html>

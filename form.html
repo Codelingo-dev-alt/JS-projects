@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            max-width: 400px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            outline: none;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+        }
+
+        input[type="submit"] {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #2980b9;
+        }
+    </style>
+    <div class="container">
+        <form id="form" action="\">
+            <input id="username" type="text" placeholder="Enter your name">
+            <input id="email" type="email" placeholder="Enter your email">
+            <input id="password" type="password" placeholder="Enter your password">
+            <p class="showResult"></p>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('form');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const showResult = document.querySelector('.showResult');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (username.value === '' || email.value === '' || password.value === '') {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Please fill in all fields.';
+            } else if (username.value.length < 3) {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Username must be at least 3 characters long.';
+            } else if (username.value.length > 15) {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Username must be less than 15 characters long.';
+            } else if (/\d/.test(username.value)) {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Username must not contain numbers.';
+            } else if (email.value.length > 50) {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Email must be less than 50 characters long.';
+            } else if (password.value.length > 20) {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Password must be less than 20 characters long.';
+            } else if (password.value.toLowerCase() === 'password') {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Password cannot be "password".';
+            } else if (password.value === username.value) {
+                showResult.style.color = 'green';
+                showResult.textContent = `Welcome, ${username.value}!`;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Please enter a valid email address.';
+            } else if (password.value.length < 6) {
+                showResult.style.color = 'red';
+                showResult.textContent = 'Password must be at least 6 characters long.';
+            } else {
+                showResult.style.color = 'green';
+                showResult.textContent = `Welcome, ${username.value}!`;
+            }
+        });
+    </script>
+</body>
+
+</html>
