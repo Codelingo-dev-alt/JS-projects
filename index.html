@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aaa</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #e9f0ff;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        color: #222;
+        font-size: 28px;
+      }
+      a {
+        margin-top: 20px;
+        color: #0078ff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+      }
+      li button {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Your Saved Text</h1>
+    <ul id="list"></ul>
+    <a href="./codeLingo.html">Back</a>
+
+    <script>
+      const field = document.getElementById("list");
+      let items = JSON.parse(localStorage.getItem("items")) || [];
+
+      function renderList() {
+        field.innerHTML = "";
+        if (items.length === 0) {
+          const li = document.createElement("li");
+          li.textContent = "No item found.";
+          field.appendChild(li);
+          return;
+        }
+        items.forEach((text, index) => {
+          const li = document.createElement("li");
+          li.textContent = text;
+
+          const btn = document.createElement("button");
+          btn.textContent = "Delete";
+          btn.addEventListener("click", () => deleteItem(index));
+          li.appendChild(btn);
+          field.appendChild(li);
+        });
+      }
+
+      function deleteItem(index) {
+        items.splice(index, 1);
+        localStorage.setItem("items", JSON.stringify(items));
+        renderList();
+      }
+      renderList(); 
+    </script>
+  </body>
+</html>
