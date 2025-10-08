@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ㅤㅤㅤㅤ</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+      }
+
+      .container {
+        text-align: center;
+        background: #fff;
+        padding: 40px 50px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        width: 320px;
+      }
+
+      h1 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+      }
+
+      p {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 20px;
+        min-height: 24px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        font-size: 14px;
+        transition: border-color 0.2s ease;
+        margin-bottom: 12px;
+      }
+
+      input:focus {
+        border-color: #007bff;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      button:disabled {
+        background-color: #a0c5f8;
+        cursor: not-allowed;
+      }
+
+      /* Error shake + red color */
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        20% {
+          transform: translateX(-5px);
+        }
+        40% {
+          transform: translateX(5px);
+        }
+        60% {
+          transform: translateX(-5px);
+        }
+        80% {
+          transform: translateX(5px);
+        }
+      }
+
+      .error {
+        color: red;
+        animation: shake 0.4s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Your text will be shown soon...</h1>
+      <p></p>
+      <input type="text" />
+      <button onclick="submitText()">Submit</button>
+    </div>
+
+    <script>
+      const originalTitle = document.title;
+
+      window.addEventListener("blur", () => {
+        document.title = "Come back 😢";
+      });
+
+      window.addEventListener("focus", () => {
+        document.title = originalTitle;
+      });
+
+      const input = document.querySelector("input");
+      const pElement = document.querySelector("p");
+      const h1 = document.querySelector("h1");
+      const button = document.querySelector("button");
+      const numbers = [0, 1, 2, 3, 4, 5];
+      const newArr = numbers.reverse();
+      function submitText() {
+        if (input.value !== "") {
+          let i = 0;
+          button.disabled = true;
+          const timer = setInterval(() => {
+            h1.textContent = `Your text will be shown ${newArr[i]} second`;
+            i++;
+
+            if (i === newArr.length) {
+              clearInterval(timer);
+              pElement.textContent = input.value;
+              input.value = "";
+              button.disabled = false;
+            }
+          }, 1000);
+        } else {
+          h1.textContent = "Write Something";
+          h1.classList.add("error");
+          setTimeout(() => h1.classList.remove("error"), 500);
+        }
+      }
+    </script>
+  </body>
+</html>
