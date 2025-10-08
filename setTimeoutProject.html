@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minimal Clock</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      }
+
+      .clock {
+        color: #222;
+        font-size: 80px;
+        font-weight: 500;
+        letter-spacing: 3px;
+        background: #ffffffcc;
+        padding: 30px 60px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .clock:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      span {
+        display: inline-block;
+        min-width: 80px;
+        text-align: center;
+        color: #333;
+        transition: color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <span id="hour">00</span>: <span id="minute">00</span>:
+      <span id="second">00</span>
+    </div>
+
+    <script>
+      const originalTitle = document.title;
+
+      window.addEventListener("blur", () => {
+        document.title = "Come back 😢";
+      });
+
+      window.addEventListener("focus", () => {
+        document.title = originalTitle;
+      });
+      const hour = document.getElementById("hour");
+      const minute = document.getElementById("minute");
+      const second = document.getElementById("second");
+
+      function updateTime() {
+        const now = new Date();
+        hour.textContent = now.getHours().toString().padStart(2, "0");
+        minute.textContent = now.getMinutes().toString().padStart(2, "0");
+        second.textContent = now.getSeconds().toString().padStart(2, "0");
+      }
+
+      setInterval(updateTime, 1000);
+      updateTime();
+    </script>
+  </body>
+</html>
